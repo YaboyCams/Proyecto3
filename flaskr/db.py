@@ -29,7 +29,7 @@ def validate_user(username, password):
     """Validate user credentials against the database."""
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM LoginType WHERE userName = ? AND password = ?", (username, password))
+    cursor.execute("SELECT * FROM Usuario RIGHT JOIN TipoU ON Usuario.IdTipoU = TipoU.id WHERE Usuario.Username = ? AND Usuario.Password = ?", (username, password))
     user = cursor.fetchone()
     return user
 

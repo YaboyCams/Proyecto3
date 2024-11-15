@@ -11,7 +11,7 @@ def dashboardUser():
     cursor = conn.cursor()
 
     # Query to fetch user data
-    cursor.execute("SELECT userName FROM LoginType")
+    cursor.execute("SELECT Username FROM Usuario")
     users = cursor.fetchall()  # Retrieve all rows
 
     # Pass data to the template

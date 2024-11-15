@@ -13,18 +13,18 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    
-                    <th>Username</th>
-                    <th>password</th> 
-                    <th>Type</th>
+                    <th>Numero de la TF</th>
+                    <th>Estado de la TF</th>
+                    <th>Tipo de cuenta</th>
+                    <th>Fecha de vencimiento</th>
                 </tr>
             </thead>
             <tbody>
                 {% for user in users %}
                 <tr>
-                    <td>{{ user.userName }}</td>
-                    <td>{{ user.password }}</td>
-                    <td>{{ user.type }}</td>
+                    <td>{{ user.Username }}</td>
+                    <td>{{ user.Password }}</td>
+                    <td>{{ user.Tipo }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
