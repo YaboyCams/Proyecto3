@@ -1,4 +1,4 @@
-USE[Proyecto 3]
+USE[Proyecto-3]
 
 BEGIN TRY
     BEGIN TRANSACTION;  -- Iniciar la transacción
@@ -7,7 +7,7 @@ BEGIN TRY
 
     -- Cargar el XML desde el archivo
     SELECT @XmlData = CONVERT(XML, BulkColumn)
-    FROM OPENROWSET(BULK 'D:\Proyecto 3 Bases\OperacionesFinal.xml', SINGLE_BLOB) AS x;
+    FROM OPENROWSET(BULK 'C:\Users\tian_\Desktop\Proyecto3-py\Proyecto3\OperacionesFinal.xml', SINGLE_BLOB) AS x;
 
     -- Insertar datos en la tabla TH
     INSERT INTO TH (Nombre, IdUsuario, FechaNacimiento, DocumentoIdentidad)

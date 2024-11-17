@@ -11,13 +11,13 @@ def login():
         
         try:
             user = validate_user(username, password)  # Validate user credentials
-
+            idUser = user.id
             if user and user.Tipo == "admin":  # Check if user exists and is an Admin
-                flash('Login successful!', 'success')  # Show success message
-                return redirect(url_for('dashboardAdmin.dashboardAdmin'))  # Redirect to dashboard
+                
+                return redirect(url_for('dashboardAdmin.dashboardAdmin', id=idUser))  # Redirect to dashboard
             if user and user.Tipo == "TH":  # Check if user exists and is an Admin
-                flash('Login successful!', 'success')  # Show success message
-                return redirect(url_for('dashboardUser.dashboardUser'))  # Redirect to dashboard
+                
+                return redirect(url_for('dashboardUser.dashboardUser', id=idUser))
             else:
                 flash('Invalid username or password', 'danger')  # Show error message
                 return redirect(url_for('login.login'))  # Stay on login page
@@ -25,7 +25,7 @@ def login():
         except Exception as e:
             # Log the error (You can replace this with logging functionality)
             print(f"Error: {e}")
-            flash('An error occurred while processing your request. Please try again later.', 'danger')
+            flash('Invalid username or password.', 'danger')
             return redirect(url_for('login.login'))  # Stay on login page if an error occurs
 
     return render_template('login.html')  # Render login page for GET request

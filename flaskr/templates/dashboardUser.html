@@ -17,17 +17,24 @@
                     <th>Estado de la TF</th>
                     <th>Tipo de cuenta</th>
                     <th>Fecha de vencimiento</th>
+                    <th>Info</th>
                 </tr>
             </thead>
             <tbody>
                 {% for user in users %}
                 <tr>
                     <td>{{ user.Username }}</td>
-                    
+                    <td>{{ user.Username }}</td>
+                    <td>{{ user.Username }}</td>
+                    <td>{{ user.Username }}</td>
+                    <td>
+                        <a href="{{ url_for('infoTCM.infoTCM', user_id=user.Username) }}" class="btn btn-info btn-sm">Info</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
+        <a href="{{url_for('login.login') }}" class="btn btn-primary">Back</a>
     </div>
 </body>
 </html>

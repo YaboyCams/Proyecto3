@@ -9,7 +9,6 @@
 <body>
     <div class="container mt-5">
         <h1 class="mb-4">Portal TajetaHabitante</h1>
-        
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -26,11 +25,21 @@
                 {% for user in users %}
                 <tr>
                     <td>{{ user.Username }}</td>
+                    <td>
+                        <a href="{{ url_for('infoEstadoCuenta.infoEstadoCuenta', user_id=user.Username) }}" class="btn btn-info btn-sm">Info</a>
+                    </td>
                     
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
+        {% if users.tipo == 'admin' %}
+        <!-- If user is an admin, go back to admin dashboard -->
+        <a href="{{ url_for('dashboardAdmin.dashboardAdmin') }}" class="btn btn-primary">Back to Admin Dashboard</a>
+    {% else %}
+        <!-- If user is not an admin, go back to user dashboard -->
+        <a href="{{ url_for('dashboardUser.dashboardUser') }}" class="btn btn-primary">Back to User Dashboard</a>
+    {% endif %}
     </div>
 </body>
 </html>

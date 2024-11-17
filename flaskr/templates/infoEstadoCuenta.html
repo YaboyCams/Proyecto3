@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="mb-4">Portal TajetaHabitante</h1>
+        <h1 class="mb-4">Estado de Cuenta</h1>
         
         <table class="table table-striped">
             <thead>
@@ -30,6 +30,7 @@
                 {% endfor %}
             </tbody>
         </table>
+        <a href="{{ request.referrer  }}" class="btn btn-primary">Back</a>
     </div>
 </body>
 </html>
