@@ -64,28 +64,17 @@ BEGIN TRY
     JOIN TCM ON TCM.Codigo = T.C.value('@CodigoTCM', 'INT');
 
     -- Insert data into the TF table
-    INSERT INTO TF (Codigo, CodigoTC, FechaVencimiento, CCV)
+    INSERT INTO TF (Codigo, CodigoTC, FechaVencimiento, CCV, IdTCM, IdTCA)
     SELECT 
-        T.C.value('@Codigo', 'BIGINT'),
-        TCA.id,
-        TRY_CONVERT(DATE, CONCAT('01/', T.C.value('@FechaVencimiento', 'VARCHAR(7)')), 103),
-        T.C.value('@CCV', 'INT')
+        T.C.value('@Codigo', 'BIGINT'),                            -- Código del TF
+        T.C.value('@TCAsociada', 'INT'),                           -- CodigoTC (valor exacto del XML)
+        TRY_CONVERT(DATE, CONCAT('01/', T.C.value('@FechaVencimiento', 'VARCHAR(7)')), 103), -- Fecha de vencimiento
+        T.C.value('@CCV', 'INT'),                                 -- Código de seguridad
+        TCM.id,                                                   -- Relación con TCM (si existe)
+        TCA.id                                                    -- Relación con TCA (si existe)
     FROM @XmlData.nodes('/root/fechaOperacion/NTF/NTF') AS T(C)
-    JOIN TCA ON TCA.Codigo = T.C.value('@TCAsociada', 'INT');
-
-    -- Update TF table with IdTCM and IdTCA
-    UPDATE TF
-    SET IdTCM = CASE 
-                    WHEN TCM.Codigo IS NOT NULL THEN TCM.Id 
-                    ELSE NULL 
-                END,
-        IdTCA = CASE 
-                    WHEN TCA.Codigo IS NOT NULL THEN TCA.Id 
-                    ELSE NULL 
-                END
-    FROM TF
-    LEFT JOIN TCM ON TCM.Codigo = TF.Codigo
-    LEFT JOIN TCA ON TCA.Codigo = TF.Codigo;
+    LEFT JOIN TCA ON TCA.Codigo = T.C.value('@TCAsociada', 'INT')  -- Intentar relacionar con TCA
+    LEFT JOIN TCM ON TCM.Codigo = T.C.value('@TCAsociada', 'INT'); -- Intentar relacionar con TCM
 
     -- Insert data into the Movimientos table
     INSERT INTO Movimientos (IdTF, Nombre, FechaMovimiento, Monto, Descripcion, Referencia, Sopechoso)
