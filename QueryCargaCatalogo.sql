@@ -1,4 +1,4 @@
-﻿USE[Proyecto 3]
+﻿USE[Proyecto 3 BackUp]
 
 DECLARE @XML XML;
 
@@ -51,8 +51,16 @@ BEGIN TRY;
 	FROM @XML.nodes('/root/TM/TM') AS X(T);
 
 	-- Insertar TiposUsuario
-	INSERT INTO dbo.TipoU(Tipo)
-	VALUES('Admin'),('TH')
+	
+	SET IDENTITY_INSERT dbo.TipoU ON;
+
+	-- Insertar TiposUsuario con IDs específicos
+	INSERT INTO dbo.TipoU (Id, Tipo)
+	VALUES (1, 'Admin'), (2, 'TH');
+
+	-- Volver a activar la propiedad IDENTITY
+	SET IDENTITY_INSERT dbo.TipoU OFF;
+
 
 
 	-- Insertar en Usuario
