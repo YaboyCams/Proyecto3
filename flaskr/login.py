@@ -12,12 +12,12 @@ def login():
         try:
             user = validate_user(username, password)  # Validate user credentials
             idUser = user.id
-            if user and user.Tipo == "admin":  # Check if user exists and is an Admin
+            if user and user.Tipo == "Admin":  # Check if user exists and is an Admin
                 
-                return redirect(url_for('dashboardAdmin.dashboardAdmin', id=idUser))  # Redirect to dashboard
+                return redirect(url_for('dashboardAdmin.dashboardAdmin', id=username, type=user.Tipo))  # Redirect to dashboard
             if user and user.Tipo == "TH":  # Check if user exists and is an Admin
                 
-                return redirect(url_for('dashboardUser.dashboardUser', id=idUser))
+                return redirect(url_for('dashboardUser.dashboardUser', id=username, type=user.Tipo))
             else:
                 flash('Invalid username or password', 'danger')  # Show error message
                 return redirect(url_for('login.login'))  # Stay on login page

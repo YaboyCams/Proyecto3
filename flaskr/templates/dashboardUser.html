@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="mb-4">Portal TajetaHabitante</h1>
+        <h1 class="mb-4">Portal Tajeta-Habitante</h1>
         
         <table class="table table-striped">
             <thead>
@@ -17,18 +17,18 @@
                     <th>Estado de la TF</th>
                     <th>Tipo de cuenta</th>
                     <th>Fecha de vencimiento</th>
-                    <th>Info</th>
+                    
                 </tr>
             </thead>
             <tbody>
-                {% for user in users %}
+                {% for info in userInfo %}
                 <tr>
-                    <td>{{ user.Username }}</td>
-                    <td>{{ user.Username }}</td>
-                    <td>{{ user.Username }}</td>
-                    <td>{{ user.Username }}</td>
+                    <td>{{ info.Codigo }}</td>
+                    <td>{{ info.Status }}</td>
+                    <td>{{ info.SourceTable }}</td>
+                    <td>{{ info.FechaVencimiento }}</td>
                     <td>
-                        <a href="{{ url_for('infoTCM.infoTCM', user_id=user.Username) }}" class="btn btn-info btn-sm">Info</a>
+                        <a href="{{ url_for('infoTCM.infoTCM') }}" class="btn btn-info btn-sm">Info</a>
                     </td>
                 </tr>
                 {% endfor %}

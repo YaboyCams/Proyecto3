@@ -33,6 +33,26 @@ def validate_user(username, password):
     user = cursor.fetchone()
     return user
 
+def get_user_cards(username):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    # Execute the stored procedure with the username parameter
+    cursor.execute("EXEC GetUserCards @Username = ?", (username,))  # Comma added to create a tuple
+    userInfo = cursor.fetchall()
+    return userInfo
+
+def get_user_cardsAdmin():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    # Execute the stored procedure with the username parameter
+    cursor.execute("EXEC GetUserCardsAdmin")  # Comma added to create a tuple
+    userInfo = cursor.fetchall()
+    return userInfo
+
+
+
+
+
 def init_app(app):
     """Set up the database for the Flask app."""
     # Load database credentials from environment variables

@@ -22,9 +22,11 @@
                 </tr>
             </thead>
             <tbody>
-                {% for user in users %}
+                {% for info in infoTCM %}
                 <tr>
-                    <td>{{ user.Username }}</td>
+                    <td>{{ info.Codigo }}</td>
+                    <td>{{ info.LimiteCredito }}</td>
+                    <td>{{ info.Username }}</td>
                     <td>
                         <a href="{{ url_for('infoEstadoCuenta.infoEstadoCuenta', user_id=user.Username) }}" class="btn btn-info btn-sm">Info</a>
                     </td>

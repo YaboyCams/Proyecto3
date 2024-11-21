@@ -20,14 +20,14 @@
                 </tr>
             </thead>
             <tbody>
-                {% for user in users %}
+                {% for info in userInfo %}
                 <tr>
-                    <td>{{ user.Username }}</td>
-                    <td>{{ user.Password }}</td>
-                    <td>{{ user.Tipo }}</td>
-                    <td>{{ user.Tipo }}</td>
+                    <td>{{ info.Codigo }}</td>
+                    <td>{{ info.Status }}</td>
+                    <td>{{ info.SourceTable }}</td>
+                    <td>{{ info.FechaVencimiento }}</td>
                     <td>
-                        <a href="{{ url_for('infoTCM.infoTCM', user_id=user.Username) }}" class="btn btn-info btn-sm">Info</a>
+                        <a href="{{ url_for('infoTCM.infoTCM') }}" class="btn btn-info btn-sm">Info</a>
                     </td>
                 </tr>
                 {% endfor %}

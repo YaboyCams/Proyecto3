@@ -6,7 +6,7 @@ infoTCA_bp = Blueprint('infoTCA', __name__, template_folder='templates')
 
 @infoTCA_bp.route('/infoTCA')
 def infoTCM():
-    """Display a dashboard with user data in a table."""
+    
     conn = get_db_connection()
     cursor = conn.cursor()
 

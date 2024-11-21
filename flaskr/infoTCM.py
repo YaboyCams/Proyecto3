@@ -11,8 +11,9 @@ def infoTCM():
     cursor = conn.cursor()
 
     # Query to fetch user data
-    cursor.execute("SELECT * FROM Usuario RIGHT JOIN TipoU ON Usuario.IdTipoU = TipoU.id" )
-    users = cursor.fetchall()  # Retrieve all rows
+    cursor.execute("SELECT * FROM TCM WHERE TCM.IdTH = ?", (username))
+    
+    infoTCM = cursor.fetchall()  # Retrieve all rows
 
     # Pass data to the template
-    return render_template('infoTCM.html', users=users)
+    return render_template('infoTCM.html', infoTCM=infoTCM)
